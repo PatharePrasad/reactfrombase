@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@xz/fonts@1/serve/hk-grotesk.min.css">
+    <!-- <link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css"> -->
+
+    <style>
+        body {
+            font-family: 'HK Grotesk', sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <!-- <h1>React From base</h1> -->
+
+    <script src="https://www.unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+    <script src="https://www.unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+        const rooteL = document.querySelector('#app');
+        const root = ReactDOM.createRoot(rooteL);
+
+        root.render(<Header>
+            This is some text we Need to render
+            <span style={{ color: 'wheat' }}>This is some text we Need to render</span>
+        </Header>);
+
+        // Header
+
+        function Header({ children }) {
+
+            return (
+                <React.StrictMode>
+                    <header className="bg-zinc-500 text-5xl px-20 py-10">
+                        <h1 className='font-bold'>{children}</h1>
+                    </header>
+                    <Main />
+                    </React.StrictMode>);
+                
+        }
+
+        // counter
+        function Counter() {
+            let[state, setState] = React.useState(0);
+            let [counter, setCounter] = React.useState(0);
+
+        return (
+            <React.Fragment>
+            <div className="flex text-6xl border border-zinc-600 w-fit p-2 gap-3 rounded-lg mb-3">
+              <button
+                className="bg-blue-300 rounded-sm"
+                onClick={() => setCounter((preVal) => preVal - 1)}
+              >
+                -
+              </button>
+              <p>{counter}</p>
+              <button
+                className="bg-blue-300 rounded-sm"
+                onClick={() => setCounter((preVal) => preVal + 1)}
+              >
+                +
+              </button>
+            </div>
+            <Grid limit={counter} />
+          </React.Fragment>
+          )
+        }
+// grid 
+
+function Grid({limit = 1 }) {
+   
+
+        const data = [
+          {
+            id: 1,
+            name: "React",
+            description: "A JavaScript library for building user interfaces",
+          },
+          {
+            id: 2,
+            name: "Angular",
+            description:
+              "A TypeScript-based open-source front-end web framework",
+          },
+          {
+            id: 3,
+            name: "Vue",
+            description:
+              "A progressive JavaScript framework for building user interfaces",
+          },
+          {
+            id: 4,
+            name: "Svelte",
+            description: "A compiler for building user interfaces",
+          },
+        ];
+        
+        return (
+          <div className="flex flex-wrap gap-4">
+            {data.slice(0, limit  < 0 ? 0 : limit).map((currentObj) => {
+              return (
+                <div
+                  key={currentObj.id}
+                  className="border border-zinc-800 rounded-lg p-4 w-48"
+                >
+                  <h2 className="text-2xl font-bold mb-2">{currentObj.name}</h2>
+                  <p>{currentObj.description}</p>
+                </div>
+              );
+            })}
+          </div>
+        );
+
+       
+      }
+        // main
+        function Main() {
+            return (
+                <main className="px-8 py-6 container">
+                    <h2 className="text-xl font-bold mb-3">Why? 🤔</h2>
+                    <p  className = 'mb-3'>
+                        React from base is a project that uses React without any other
+                        libraries or build tools. In-fact, it doesn't even have any{" "}
+                        <code className="font-monospace bg-zinc-300 rounded p-1">
+                            package.json
+                        </code>
+                    </p>
+                    <Counter />
+                    
+                </main>
+            );
+        }
+    </script>
+</body>
+
+</html>
