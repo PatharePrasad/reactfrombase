@@ -1,168 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>React From Base</title>
-    <!-- Fonts -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@xz/fonts@1/serve/hack.min.css"
-    />
-    <!-- Tailwind -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Update Font -->
-    <style>
-      body {
-        font-family: "Hack", monospace;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="app"></div>
 
-    <!-- Add React -->
-    <script src="https://www.unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
-    <!-- Add ReactDOM -->
-    <script src="https://www.unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
-    <!-- Add Babel -->
-    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>React From Base</title>
+  <!-- Fonts -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@xz/fonts@1/serve/hack.min.css" />
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Update Font -->
+  <style>
+    body {
+      font-family: "Hack", monospace;
+    }
+  </style>
+</head>
 
-    <!-- Custom Script -->
-    <script type="text/babel">
-      const rootEl = document.querySelector("#app");
-      const root = ReactDOM.createRoot(rootEl);
+<body>
+  <div id="app"></div>
 
-      function Header({ children, bgColor = "light" }) {
-        const backgroundOptions = {
-          light: "bg-zinc-200",
-          blue: "bg-blue-200",
-          green: "bg-green-200",
-          red: "bg-red-200",
-        };
+  <!-- Add React -->
+  <script src="https://www.unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+  <!-- Add ReactDOM -->
+  <script src="https://www.unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+  <!-- Add Babel -->
+  <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
 
-        return (
-          <header
-            className={`${backgroundOptions[bgColor]} px-8 py-6 border-b`}
-          >
-            <h1 className="text-2xl font-semibold">{children}</h1>
-          </header>
-        );
-      }
+  <!-- Custom Script -->
+  <script type="text/babel">
+    const rootEl = document.querySelector("#app");
+    const root = ReactDOM.createRoot(rootEl);
 
-      function Counter({ handleChange }) {
-        let [counter, setCounter] = React.useState(0);
+    function Header({ children, bgColor = "light" }) {
+      const backgroundOptions = {
+        light: "bg-zinc-200",
+        blue: "bg-blue-200",
+        green: "bg-green-200",
+        red: "bg-red-200",
+      };
 
-        function handleClick(operation = "+") {
-          if (operation === "+") {
-            setCounter((prevValue) => {
-              handleChange(prevValue + 1);
-              return prevValue + 1;
-            });
-
-            return;
-          }
-
-          setCounter((prevValue) => {
-            handleChange(prevValue - 1);
-            return prevValue - 1;
-          });
-        }
-
-        return (
-          <React.Fragment>
-            <div className="flex text-6xl border border-zinc-600 w-fit p-2 gap-3 rounded-lg mb-3">
-              <button
-                className="bg-blue-300 rounded-sm"
-                onClick={() => handleClick("-")}
-                disabled={counter === 0}
-              >
-                -
-              </button>
-              <p>{counter}</p>
-              <button
-                className="bg-blue-300 rounded-sm"
-                onClick={() => handleClick("+")}
-              >
-                +
-              </button>
-            </div>
-          </React.Fragment>
-        );
-      }
-
-      function Grid({ limit = 1 }) {
-        const data = [
-          {
-            id: 1,
-            name: "React",
-            description: "A JavaScript library for building user interfaces",
-          },
-          {
-            id: 2,
-            name: "Angular",
-            description:
-              "A TypeScript-based open-source front-end web framework",
-          },
-          {
-            id: 3,
-            name: "Vue",
-            description:
-              "A progressive JavaScript framework for building user interfaces",
-          },
-          {
-            id: 4,
-            name: "Svelte",
-            description: "A compiler for building user interfaces",
-          },
-        ];
-
-        return (
-          <div className="flex flex-wrap gap-4">
-            {data.slice(0, limit < 0 ? 0 : limit).map((currentObj) => {
-              return (
-                <div
-                  key={currentObj.id}
-                  className="border border-zinc-800 rounded-lg p-4 w-48"
-                >
-                  <h2 className="text-2xl font-bold mb-2">{currentObj.name}</h2>
-                  <p>{currentObj.description}</p>
-                </div>
-              );
-            })}
-          </div>
-        );
-      }
-
-      function Main() {
-        const [size, setSize] = React.useState(0);
-
-        function handleChange(value) {
-          setSize(value);
-        }
-
-        return (
-          <main className="px-8 py-6 container">
-            <h2 className="text-xl font-bold mb-3">Why? 🤔</h2>
-            <p className="mb-5">
-              React from base is a project that uses React without any other
-              libraries or build tools. In-fact, it doesn't even have any{" "}
-              <code className="font-monospace bg-zinc-300 rounded p-1">
-                package.json
-              </code>
-            </p>
-            <Counter handleChange={handleChange} />
-            <Grid limit={size} />
-          </main>
-        );
-      }
-
-      root.render(
-        <React.StrictMode>
-          <Header bgColor="green">React From Base</Header>
-          <Main />
-        </React.StrictMode>
+      return (
+        <header
+          className={`${backgroundOptions[bgColor]} px-8 py-6 border-b`}
+        >
+          <h1 className="text-2xl font-semibold">{children}</h1>
+        </header>
       );
-    </script>
-  </body>
+    }
+
+    function Counter({ handleChange }) {
+      let [counter, setCounter] = React.useState(0);
+
+      function handleClick(operation = "+") {
+
+        setCounter((prevValue) => {
+          let newValue = operation === "+" ? prevValue + 1: prevValue - 1
+          handleChange(newValue)
+          return newValue;
+        });
+
+      }
+
+      return (
+        <React.Fragment>
+          <div className="flex text-6xl border border-zinc-600 w-fit p-2 gap-3 rounded-lg mb-3">
+            <button
+              className="bg-blue-300 rounded-sm"
+              onClick={() => handleClick("-")}
+              disabled={counter === 0}
+            >
+              -
+            </button>
+            <p>{counter}</p>
+            <button
+              className="bg-blue-300 rounded-sm"
+              onClick={() => handleClick("+")}
+            >
+              +
+            </button>
+          </div>
+        </React.Fragment>
+      );
+    }
+
+    function Grid({ limit = 1 }) {
+      const data = [
+        {
+          id: 1,
+          name: "React",
+          description: "A JavaScript library for building user interfaces",
+        },
+        {
+          id: 2,
+          name: "Angular",
+          description:
+            "A TypeScript-based open-source front-end web framework",
+        },
+        {
+          id: 3,
+          name: "Vue",
+          description:
+            "A progressive JavaScript framework for building user interfaces",
+        },
+        {
+          id: 4,
+          name: "Svelte",
+          description: "A compiler for building user interfaces",
+        },
+      ];
+
+      return (
+        <div className="flex flex-wrap gap-4">
+          {data.slice(0, limit < 0 ? 0 : limit).map((currentObj) => {
+            return (
+              <div
+                key={currentObj.id}
+                className="border border-zinc-800 rounded-lg p-4 w-48"
+              >
+                <h2 className="text-2xl font-bold mb-2">{currentObj.name}</h2>
+                <p>{currentObj.description}</p>
+              </div>
+            );
+          })}
+        </div>
+      );
+    }
+
+    function Main() {
+      const [size, setSize] = React.useState(0);
+
+      function handleChange(value) {
+        setSize(value);
+      }
+
+      return (
+        <main className="px-8 py-6 container">
+          <h2 className="text-xl font-bold mb-3">Why? 🤔</h2>
+          <p className="mb-5">
+            React from base is a project that uses React without any other
+            libraries or build tools. In-fact, it doesn't even have any{" "}
+            <code className="font-monospace bg-zinc-300 rounded p-1">
+              package.json
+            </code>
+          </p>
+          <Counter handleChange={handleChange} />
+          <Grid limit={size} />
+        </main>
+      );
+    }
+
+    root.render(
+      <React.StrictMode>
+        <Header bgColor="green">React From Base</Header>
+        <Main />
+      </React.StrictMode>
+    );
+  </script>
+</body>
+
 </html>
